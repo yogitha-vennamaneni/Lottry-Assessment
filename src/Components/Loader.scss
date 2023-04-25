@@ -1,0 +1,22 @@
+#loader {
+    animation: animName 2s linear infinite;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle at 100px 100px, #000, #5cabff, #000);
+    position: absolute;
+    z-index: 1000;
+    margin: -100px 300px;
+    color: white;
+    font-size: 80px;
+    text-align: center;
+    border-radius: 50%;
+  }
+  
+  @keyframes animName {
+   0%{
+      transform: rotate(0deg);
+     }
+  100%{
+      transform: rotate(360deg);
+     }
+}

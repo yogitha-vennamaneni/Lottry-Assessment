@@ -1,0 +1,31 @@
+$colors-list : (
+    red,
+    orange,
+    yellowgreen,
+    green,
+    blue,
+    indigo,
+    purple,
+    violet
+);
+
+@each $current-color in $colors-list {
+    $i: index($colors-list, $current-color);
+    .ballDrawed-#{$i} {
+        @if $current-color == yellowgreen {
+            color: black;
+        } @else {
+            color: white;
+        }
+        background-color: $current-color !important;
+    }
+
+    .ball-color-#{$i} {
+        background: radial-gradient(circle at 100px 100px, #000, $current-color, #000) !important;
+        @if $current-color == yellowgreen {
+            color: black !important;
+        } @else {
+            color: white;
+        }
+    }
+}
