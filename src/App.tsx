@@ -9,7 +9,6 @@ function App() {
 
     return (
         <GeneratorProvider>
-            <h1>Hello world React!!!!</h1>
             <div>
                 <Reset setTicket={setTicket} />
                 <br/>

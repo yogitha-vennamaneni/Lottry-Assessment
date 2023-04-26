@@ -40,6 +40,7 @@ function GeneratorProvider(props: any) {
     const [isBallsDrawing, setIsBallsDrawing] = useState(defaultValues.isBallsDrawing);
     const [isBallRoatating, setIsBallRotating] = useState(false);
     const [isReDraw, setIsReDraw] = useState(false);
+    const [reset, setReset] = useState(false);
     let interval: any = null;
 
     const drawBall = () => {
@@ -54,6 +55,7 @@ function GeneratorProvider(props: any) {
     }
   
     const drawBalls = () => {
+        setReset(false);
         if(ballcount == defaultValues.maxBallsCount) {
             setIsReDraw(true);
             resetBalls();
@@ -75,7 +77,7 @@ function GeneratorProvider(props: any) {
             setRecentBall(0);
             clearTimeout(interval);
         }
-        return () => clearTimeout(interval);
+        return;
     }
 
     useEffect(() => {
@@ -83,7 +85,15 @@ function GeneratorProvider(props: any) {
             if(isReDraw) {                
                 setIsBallsDrawing(true);
             }
-            triggerBallDraw();
+            if(!reset) {
+                triggerBallDraw();
+            } else {
+                setBallsCount(0);
+                setBalls([]);
+                setBallsDrawn(defaultBallsValue);
+                setIsBallsDrawing(false);
+                setRecentBall(0);
+            }
         }
     }, [balls, isReDraw]);
 
@@ -95,12 +105,7 @@ function GeneratorProvider(props: any) {
     }, [isBallRoatating])
 
     const resetBalls = () => {
-        clearTimeout(interval);
-        setBallsCount(0);
-        setBalls([]);
-        setBallsDrawn(defaultBallsValue);
-        setIsBallsDrawing(false);
-        setRecentBall(0);
+        setReset(true);
     }
 
     const contextValue: generatorContextType = { 

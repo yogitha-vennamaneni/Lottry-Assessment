@@ -7,6 +7,6 @@ describe('App should render without crashing', () => {
     it('should render App by default', () => {
         render(<App />);
 
-        expect(screen.getByText("Hello world React!!!!")).toBeInTheDocument();
+        expect(screen.getByText("Reset")).toBeInTheDocument();
     });
 });
